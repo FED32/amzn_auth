@@ -1,0 +1,46 @@
+version: "3.8"
+networks:
+  amzn:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.14.0.1/16
+services:
+  amzn-auth:
+    build: .
+    restart: always
+    container_name: amzn-auth
+    environment:
+      TZ: Europe/Moscow
+      ECOMRU_PG_DB_NAME: ${ECOMRU_PG_DB_NAME}
+      ECOMRU_PG_HOST: ${ECOMRU_PG_HOST}
+      ECOMRU_PG_PORT: ${ECOMRU_PG_PORT}
+      ECOMRU_PG_USER: ${ECOMRU_PG_USER}
+      ECOMRU_PG_PASSWORD: ${ECOMRU_PG_PASSWORD}
+      ECOMRU_PG_SSL_MODE: ${ECOMRU_PG_SSL_MODE}
+      ECOMRU_CH_HOST: ${ECOMRU_CH_HOST}
+      ECOMRU_CH_DB_NAME: ${ECOMRU_CH_DB_NAME}
+      ECOMRU_CH_USER: ${ECOMRU_CH_USER}
+      ECOMRU_CH_PASSWORD: ${ECOMRU_CH_PASSWORD}
+      ECOMRU_CH_PORT: ${ECOMRU_CH_PORT}
+    volumes:
+      - /home/get/logs_all//amzn_auth/:/app/logs/
+    networks:
+      - amzn
+  nginx:
+    container_name: nginx-amzn-auth
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    depends_on:
+      - amzn-auth
+    restart: always
+    environment:
+      - "TZ=Europe/Moscow"
+    ports:
+#     - 8086:80
+#     - 4431:443
+    volumes:
+      - /home/get/cert:/app/cert
+    networks:
+      - amzn

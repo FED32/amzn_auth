@@ -1,0 +1,11 @@
+Flask~=2.2.3
+requests~=2.28.2
+Werkzeug~=2.2.3
+pandas~=2.0.0
+numpy~=1.24.2
+clickhouse-driver~=0.2.5
+clickhouse-connect~=0.5.20
+psycopg2~=2.9.5
+SQLAlchemy~=1.4.46
+gunicorn
+uvicorn==0.20.0
