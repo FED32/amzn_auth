@@ -16,7 +16,7 @@ deploy:
     - ${TAG_NAME}
   script:
   - docker compose down
-  - docker rmi amzn_auth-amzn-auth
-  - docker rmi amzn_auth-nginx
+  # - docker rmi amzn_auth-amzn-auth
+  # - docker rmi amzn_auth-nginx
   - docker compose up -d
 
