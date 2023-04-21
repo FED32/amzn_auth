@@ -4,7 +4,7 @@ networks:
     driver: bridge
     ipam:
       config:
-        - subnet: 172.14.0.1/16
+        - subnet: 172.13.0.1/16
 services:
   amzn-auth:
     build: .
@@ -40,8 +40,8 @@ services:
     environment:
       - "TZ=Europe/Moscow"
     ports:
-#     - 8086:80
-#     - 4431:443
+      - 8080:80
+      - 4433:443
     volumes:
       - /home/get/cert:/app/cert
     networks:
