@@ -31,7 +31,7 @@ CLIENT_ID = os.environ.get('AMZN_LWA_CLIENT_ID', None)
 CLIENT_SECRET = os.environ.get('AMZN_LWA_CLIENT_SECRET', None)
 
 # REDIRECT_URI = 'https://amazon.com'
-REDIRECT_URI = 'http://127.0.0.1:5000/oauth2callback'
-# REDIRECT_URI = ''
+# REDIRECT_URI = 'http://127.0.0.1:5000/oauth2callback'
+REDIRECT_URI = 'https://apps0.ecomru.ru:4433/oauth2callback'
 REGION = 'NA'
 # PERMISSION_SCOPE =
