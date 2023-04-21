@@ -27,8 +27,9 @@ CH_PORT = os.environ.get('ECOMRU_CH_PORT', None)
 PG_DB_PARAMS = f"postgresql://{PG_USER}:{PG_PASSWORD}@{PG_HOST}:{PG_PORT}/{PG_DB_NAME}"
 
 # приложение LwA
-CLIENT_ID = 'amzn1.application-oa2-client.9fd2f3d1c6934f0292ed191c929b1fba'
-CLIENT_SECRET = '1f17d8d087e59d5ff8a3ef6985903d065181a94d3c775c65069ee5c335f92cd3'
+CLIENT_ID = os.environ.get('AMZN_LWA_CLIENT_ID', None)
+CLIENT_SECRET = os.environ.get('AMZN_LWA_CLIENT_SECRET', None)
+
 # REDIRECT_URI = 'https://amazon.com'
 REDIRECT_URI = 'http://127.0.0.1:5000/oauth2callback'
 # REDIRECT_URI = ''
