@@ -30,8 +30,10 @@ PG_DB_PARAMS = f"postgresql://{PG_USER}:{PG_PASSWORD}@{PG_HOST}:{PG_PORT}/{PG_DB
 CLIENT_ID = os.environ.get('AMZN_LWA_CLIENT_ID', None)
 CLIENT_SECRET = os.environ.get('AMZN_LWA_CLIENT_SECRET', None)
 
-# REDIRECT_URI = 'https://amazon.com'
 # REDIRECT_URI = 'http://127.0.0.1:5000/oauth2callback'
 REDIRECT_URI = 'https://apps0.ecomru.ru:4433/oauth2callback'
 REGION = 'NA'
 # PERMISSION_SCOPE =
+
+FLASK_SECRET_KEY = os.environ.get('FLASK_SECRET_KEY', None)
+

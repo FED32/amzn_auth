@@ -25,6 +25,7 @@ services:
       ECOMRU_CH_PORT: ${ECOMRU_CH_PORT}
       AMZN_LWA_CLIENT_ID: ${AMZN_LWA_CLIENT_ID}
       AMZN_LWA_CLIENT_SECRET: ${AMZN_LWA_CLIENT_SECRET}
+      FLASK_SECRET_KEY: ${FLASK_SECRET_KEY}
     volumes:
       - /home/get/logs_all//amzn_auth/:/app/logs/
     networks:
@@ -46,3 +47,4 @@ services:
       - /home/get/cert:/app/cert
     networks:
       - amzn
+

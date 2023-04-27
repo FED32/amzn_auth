@@ -11,7 +11,7 @@ class AmznAdsEcomru:
     def __init__(self,
                  client_id: str,
                  client_secret: str,
-                 redirect_uri: str,
+                 redirect_uri: str = None,
                  region: str = 'NA'
                  ):
 
@@ -52,12 +52,12 @@ class AmznAdsEcomru:
             self.authorization_url = authorization_url_fe
             self.api_url = api_url_fe
 
-    def create_auth_grant_url(self, permission_scope: str):
+    def create_auth_grant_url(self, permission_scope: str, state: str):
         """
         :return: authorization URL
         """
         auth_grant_url = self.url_prefix
-        return f'{auth_grant_url}?scope={permission_scope}&response_type=code&client_id={self.client_id}&state=State&redirect_uri={self.redirect_uri}'
+        return f'{auth_grant_url}?scope={permission_scope}&response_type=code&client_id={self.client_id}&state={state}&redirect_uri={self.redirect_uri}'
 
     def get_tokens(self, code=None, refresh_token=None):
         """
@@ -83,7 +83,7 @@ class AmznAdsEcomru:
             return None
 
         response = requests.post(url, data=json.dumps(body))
-        print(response.status_code)
+        # print(response.status_code)
         return response
 
     def test_acc_response(self, country='US', type_='VENDOR'):
@@ -106,7 +106,7 @@ class AmznAdsEcomru:
                 }
 
         response = requests.post(url, headers=head, data=json.dumps(body))
-        print(response.status_code)
+        # print(response.status_code)
         return response
 
     def test_acc_status(self, request_id):
@@ -144,7 +144,10 @@ class AmznAdsEcomru:
                                 # params=params
                                 )
         # print(response.status_code)
-        return response
+        if response.status_code == 200:
+            return response.json()
+        else:
+            return {'error': response.status_code, 'messsage': response.text}
 
     def get_campaigns(self, profile_id):
         """Get campaigns"""
